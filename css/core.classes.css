@@ -1,0 +1,438 @@
+.ui-noSelect {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -o-user-select: none;
+   user-select: none;
+}
+.ui-noSelect::selection { background: transparent;color:inherit; }
+.ui-noSelect::-moz-selection { background: transparent;color:inherit; } 
+.ui-noSelect::-webkit-selection { background: transparent;color:inherit; } 
+
+.ui-keepOnScroll {
+    z-index: 9998;
+}
+
+.rounded-top {
+	-moz-border-radius: 10px 10px 0px 0px; /* Firefox */
+	-webkit-border-radius: 10px 10px 0px 0px; /* Safari, Chrome */
+	border-radius: 10px 10px 0px 0px; /* CSS3 */
+}
+
+.rounded-bottom {
+	-moz-border-radius: 0px 0px 10px 10px; /* Firefox */
+	-webkit-border-radius: 0px 0px 10px 10px; /* Safari, Chrome */
+	border-radius: 0px 0px 10px 10px; /* CSS3 */
+}
+
+.rounded-right {
+	-moz-border-radius: 0px 10px 0px 10px; /* Firefox */
+	-webkit-border-radius: 10px 0px 0px 10px; /* Safari, Chrome */
+	border-radius: 0px 10px 0px 10px; /* CSS3 */
+}
+
+.rounded-left {
+	-moz-border-radius: 10px 0px 10px 0px; /* Firefox */
+	-webkit-border-radius: 10px 0px 10px 0px; /* Safari, Chrome */
+	border-radius: 10px 0ptextx 10px 0px; /* CSS3 */
+}
+.rounded {
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari, Chrome */
+	border-radius: 10px; /* CSS3 */
+}
+
+
+.ui-shadow {
+	-moz-box-shadow: #000 0 0 15px;
+	-webkit-box-shadow: #000 0 0 15px;
+	-ms-box-shadow: #000 0 0 15px;
+	-o-box-shadow: #000 0 0 15px;
+	box-shadow: #000 0 0 15px;
+}
+.ui-shadow:hover {
+	-moz-box-shadow: #000 0 0 25px;
+	-webkit-box-shadow: #000 0 0 25px;
+	-ms-box-shadow: #000 0 0 25px;
+	-o-box-shadow: #000 0 0 25px;        
+	box-shadow: #000 0 0 25px;
+}
+
+.ui-shadow-inset {
+	-moz-box-shadow: inset #000 0 0 15px;
+	-webkit-box-shadow: inset #000 0 0 15px;
+	-ms-box-shadow: inset #000 0 0 15px;
+	-o-box-shadow: inset #000 0 0 15px;           
+	box-shadow: inset #000 0 0 15px;
+}
+.ui-shadow-inset:hover {
+	-moz-box-shadow: inset #000 0 0 25px;
+	-webkit-box-shadow: inset #000 0 0 25px;
+	-ms-box-shadow: inset #000 0 0 25px;
+	-o-box-shadow: inset #000 0 0 25px;           
+	box-shadow: inset #000 0 0 25px;
+}
+
+.ui-shadow-white {
+	-moz-box-shadow: #fff 0 0 15px;
+	-webkit-box-shadow: #fff 0 0 15px;
+	box-shadow: #fff 0 0 15px;
+}
+.ui-shadow-white:hover {
+	-moz-box-shadow: #fff 0 0 25px;
+	-webkit-box-shadow: #fff 0 0 25px;
+	box-shadow: #fff 0 0 25px;
+}
+
+.ui-shadow-blue {
+	-moz-box-shadow: #48ACDE 0 0 15px;
+	-webkit-box-shadow: #48ACDE 0 0 15px;
+	box-shadow: #48ACDE 0 0 15px;
+}
+.ui-shadow-blue:hover {
+	-moz-box-shadow: #48ACDE 0 0 25px;
+	-webkit-box-shadow: #48ACDE 0 0 25px;
+	box-shadow: #48ACDE 0 0 25px;
+}
+
+.capitalize { text-transform: capitalize;}
+.uppercase { text-transform: uppercase;}
+.lowercase { text-transform: lowercase;}
+
+.bold {	font-weight: bold; }
+.italic { font-style: italic; }
+
+.hidden {
+    display: none !important;
+}
+
+.show {
+    display: block;
+}
+
+.notVisible {
+    visibility: hidden !important;
+}
+
+.visible {
+    visibility: visible !important;
+}
+
+.showOnHover .targetToShow {
+    visibility: hidden;
+}
+.showOnHover:hover .targetToShow {
+    visibility: visible;
+}
+.noListStyle {
+	list-style-type: none;
+}
+
+.floatContent { display: inline-block; }
+
+.alignCenter { text-align: center;}
+.alignLeft { text-align: left;}
+.alignRight { text-align: right; }
+
+.floatLeft { float: left;}
+.floatRight { float: right; }
+
+.quaterWidth {	width: 25%; }
+.halfWidth {	width: 50%; }
+.halfQuaterWidth { width: 75%;}
+.thirdWidth { width: 33.3%;}
+.fullWidth { width: 100%; }
+.fullHeight { 
+	height: 100% !important;
+}
+
+.clear { clear: both; }
+
+.text-sm { font-size: 11px; }
+.text { font-size: 14px; }
+.text-md { font-size: 18px; }
+.text-lg { font-size: 24px; }
+.text-bg { font-size: 32px; }
+
+.whiteTextShadow {
+	text-shadow: 1px 1px #fff;
+}
+.blackTextShadow {
+	text-shadow: 1px 1px #000;
+}
+.blueTextShadow {
+	text-shadow: 1px 1px #48acde;
+}
+
+.whiteFontColor {
+	color: #fff;
+}
+
+.blackFontColor {
+	color: #000;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.overflowX {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.overflowY {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.overflowGrow {
+    overflow: visible;
+}
+
+.overflow {
+	overflow: auto !important;
+}
+
+.noOverflow {
+	overflow: hidden !important;
+}
+
+.noOverflowX {
+	overflow-x: hidden !important;
+}
+
+.noOverflowY {
+	overflow-y: hidden !important;
+}
+
+.noBorder { 
+	border: none !important;
+}
+.borderTop { 
+	border: none !important;
+	border-top: 1px solid;
+}
+
+.noPadding { 
+	padding: 0 !important;
+}
+
+.noMargin {
+	margin: 0 !important;
+}
+
+.padding {
+	padding: 10px;
+}
+
+.margin {
+	margin: 10px;
+}
+
+.whiteBg {
+	background: #fff !important;
+}
+
+.transparentBg { background: transparent !important; }
+
+.transparentBlackBg {  
+	background: transparent url('../img/pxTrans.png') !important;
+	color: #fff;
+} 
+
+/* Tweak to enable the GPU to render the layout */
+.GPUrender{
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1400;
+}
+
+/* *********************************** CSS3 FX **************************** */
+
+/* Experimental /!\ */
+.transform2d-Y {
+      -webkit-transform: rotateY( 45deg );
+         -moz-transform: rotateY( 45deg );
+          -ms-transform: rotateY( 45deg );         
+           -o-transform: rotateY( 45deg );
+              transform: rotateY( 45deg );
+}
+
+.transform2d-X {
+      -webkit-transform: rotateX( 45deg );
+         -moz-transform: rotateX( 45deg );
+          -ms-transform: rotateX( 45deg );         
+           -o-transform: rotateX( 45deg );
+              transform: rotateX( 45deg );
+}
+
+.transform3d-Y {
+    -moz-transform: translateZ(30px);
+    -ms-transform: translateZ(30px);
+    -o-transform: translateZ(30px);
+    -webkit-transform: translateZ(30px);
+    transform: translateZ(30px);
+}
+
+.transform3d-X {
+    -moz-transform: translateZ(30px);
+    -ms-transform: translateZ(30px);
+    -o-transform: translateZ(30px);
+    -webkit-transform: translateZ(30px);
+    transform: translateZ(30px);
+}
+
+/* Rotate an item */
+
+.ui-fx-rotate {
+      -webkit-transform: rotateY( 380deg );
+         -moz-transform: rotateY( 380deg );
+          -ms-transform: rotateY( 380deg );         
+           -o-transform: rotateY( 380deg );
+              transform: rotateY( 380deg );    
+}
+
+
+/* Zoom effect */
+.ui-fx-zoomOnHover:hover {
+    -moz-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -o-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -ms-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    z-index: 9999 !important;
+}
+
+
+/* fadeOnHover() fonctionne plus sur les version recente de chrome /!\ */
+
+.ui-fx-fadeOnHover  {
+	filter: alpha(opacity=100); /* internet explorer */
+	-khtml-opacity: 1;      /* khtml, old safari */
+	-moz-opacity: 1;       /* mozilla, netscape */
+	-webkit-opacity: 1;       /* webkit */
+	opacity: 1;           /* fx, safari, opera */	
+}
+
+.ui-fx-fadeOnHover:hover {
+	filter: alpha(opacity=0.2); /* internet explorer */
+	-khtml-opacity: 0.2;      /* khtml, old safari */
+	-moz-opacity: 0.2;       /* mozilla, netscape */
+	-webkit-opacity: 0.2;       /* mozilla, netscape */
+	opacity: 0.2;           /* fx, safari, opera */
+}
+
+/*
+    Reflect effect 
+    @see experimental
+*/
+.ui-reflect {
+      -webkit-box-reflect: below 7px -webkit-gradient(linear, left top, left bottom, from(black), color-stop(.4, black), to(transparent));
+      -moz-box-reflect: below 7px -webkit-gradient(linear, left top, left bottom, from(black), color-stop(.4, black), to(transparent));
+      -o-box-reflect: below 7px -webkit-gradient(linear, left top, left bottom, from(black), color-stop(.4, black), to(transparent));
+      -ms-box-reflect: below 7px -webkit-gradient(linear, left top, left bottom, from(black), color-stop(.4, black), to(transparent));
+      box-reflect: below 7px -webkit-gradient(linear, left top, left bottom, from(black), color-stop(.4, black), to(transparent));
+}
+
+/* *********************************** CSS3 Easings ************************* */
+
+/* CSS3 transition */
+.ui-transition-fast {
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;	
+}
+.ui-transition-midFast {
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;	
+}
+.ui-transition {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;	
+}
+.ui-transition-midSlow {
+	-webkit-transition: all 0.8s ease-in-out;
+	-moz-transition: all 0.8s ease-in-out;
+	-o-transition: all 0.8s ease-in-out;
+	transition: all 0.8s ease-in-out;	
+}
+.ui-transition-slow {
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;	
+}
+
+/* CSS3 loader */
+
+@-webkit-keyframes bodyBackground {
+	from {
+		background-color: #fff;
+	}
+	25% {
+		background-color: #fc3;
+	}
+	50% {
+		background-color: #3f9;
+	}
+	75% {
+		background-color: #c3f;
+	}
+	to {
+		background-color: #fff;
+	}
+}
+
+.ui-loader {
+	margin: -100px 0 0 -100px;
+	height: 200px;
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	background-color: #000;
+	-webkit-mask-image: url('http://img.zikspot.com/loader.png');
+	-webkit-animation-name: spinnerRotate, spinnerColor;
+	-webkit-animation-duration: 1s, 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes spinnerRotate {
+	from {
+		-webkit-transform:rotate(0deg);
+	}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+@-webkit-keyframes spinnerColor {
+	from {
+		background-color: #A020F0;
+	}
+	25% {
+		background-color: #1eff00;
+	}
+	50% {
+		background-color: #48acde;
+	}
+	75% {
+		background-color: #FFFF00;
+	}
+	to {
+		background-color: #FE0000;
+	}
+}
+
+
