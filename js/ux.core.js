@@ -38,7 +38,7 @@
                                 size: '100%'
                             },
                             north: {
-                                applyDefaultStyles: true,
+                                applyDefaultStyles: false,
                                 showOverflowOnHover: true,
                                 spacing_closed: 0,
                                 spacing_open: 0,
@@ -126,7 +126,7 @@
                         // Sauvegrder en cookie l etat du layout
                         $(window).unload(function() { 
                             // Sauvegarder l'organisation du layout
-                            Ux.appLayout.save('layout');  
+                            this.appLayout.save();  
                         }); 
                                                     
 
@@ -332,7 +332,7 @@
                         url: '/'+$obj.attr('data-bundle')+'/'+$obj.attr('data-controller')+'/'+$obj.attr('data-action'),
                         data: aData,
                         beforeSend : function(preload) {
-                            Ux.sendNotification('Information', 'loading', 'info', 'glyphicon glyphicon-cog');
+                            Ux.sendNotification('Chargement en cours...', 'info', 'glyphicon glyphicon-warning-sign', true);
                             $obj.data('initialContent', $obj.html());
                         },
                         success: function(rep){

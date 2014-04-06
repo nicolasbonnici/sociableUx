@@ -119,10 +119,10 @@
 }
 
 .showOnHover .targetToShow {
-    visibility: hidden;
+    display: none;
 }
 .showOnHover:hover .targetToShow {
-    visibility: visible;
+    display: inline-block;
 }
 .noListStyle {
 	list-style-type: none;
