@@ -160,7 +160,7 @@
                         opacity: 1,
                         nonblock: true,
                         nonblock_opacity: .2,
-                        history: true,
+                        history: false,
                         addclass: ((sClass.length > 0) ? (' ' + sClass) : ''),
                         //stack: stack_bottomright
                     });                    
