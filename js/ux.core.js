@@ -613,8 +613,8 @@
                  */
                 initGrids: function() {
                     var iColumnsIndex = 0;
-                    var iColumnsCount = 4; 
-                    var iTwitterBootstrapGridClass = 3; // %12
+                    var iColumnsCount = 6; 
+                    var iTwitterBootstrapGridClass = 2; // %12
                     $('.ui-grid').each(function() {
                         var sGridSelector = '#' + $(this).attr('id');
                         if (!$(this).data('grid-loaded')) {
@@ -623,7 +623,7 @@
                                 iTwitterBootstrapGridClass = 12 % iColumnsCount;
                             }
                             
-                            var sColumnTemplate = '<div class="column ui-grid-column col-md-' + iTwitterBootstrapGridClass +'"></div>';
+                            var sColumnTemplate = '<div class="column ui-grid-column col-xs-6 col-md-' + iTwitterBootstrapGridClass +'"></div>';
                             for (var i = 0; i < iColumnsCount; i++) {
                                 $(this).append(sColumnTemplate);
                             }
