@@ -831,6 +831,12 @@
                            $($(this).data('focus-selector')).focus(); 
                         });
                         
+                        // Global search
+                        $('body').on('submit', 'form#general-search', function() {
+                            $('.ui-sendform[data-form=#general-search]').trigger('click');
+                            return false;
+                         });
+                        
                         // Flag body
                         $('body').data('UxListened', true);
                     }

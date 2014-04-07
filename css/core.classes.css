@@ -237,7 +237,7 @@
 .transparentBg { background: transparent !important; }
 
 .transparentBlackBg {  
-	background: transparent url('../img/pxTrans.png') !important;
+	background: transparent url('/lib/sociableUx/img/pxTrans.png') !important;
 	color: #fff;
 } 
 
