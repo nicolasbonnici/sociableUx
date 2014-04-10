@@ -785,7 +785,11 @@
                             var bCheckState = $(this).is(':checked');
                             if (typeof(sCheckboxSelector) !== 'undefined') {
                                 $('.ui-select.' + sCheckboxSelector).prop('checked', bCheckState);
-                                $($(this).data('delete-selector')).removeClass('hide');
+                                if ($($(this).data('select-parent') + ' .ui-select:checked').size() > 1) {
+                                    $($(this).data('delete-selector')).removeClass('hide');
+                                } else {
+                                    $($(this).data('delete-selector')).addClass('hide');
+                                }
                             }
                         });
                         $('body').on('click', '.ui-select', function() {
