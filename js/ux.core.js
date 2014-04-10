@@ -386,8 +386,10 @@
                         beforeSend : function(preload) {
                             // Mettre en cache et vider l'objet qui contiendra la reponse
                             $domTarget.data('initialContent', $domTarget.html());                                    
-                            $domTarget.empty();    
-                            Ux.preload($domTarget.attr('id'));
+                            if (!obj.hasClass('sendNotificationOnCallback')) {
+                                $domTarget.empty();    
+                                Ux.preload($domTarget.attr('id')); // @todo bug
+                            }
 
                         },
                         success: function(rep){
@@ -440,7 +442,6 @@
                         sFormSelector = obj.attr('href');
                     }
                     var $formTarget = $(sFormSelector);
-                    console.log(sFormSelector);
                     var $domTarget = $(sFormSelector).parent();
                     if ($formTarget.data('sendform-reponse-selector')) {
                         $domTarget = $($formTarget.data('sendform-reponse-selector'));
@@ -464,8 +465,10 @@
                         data: oParams,
                         beforeSend : function(preload) {
                             // Mettre en cache et vider l'objet qui contiendra la reponse
-                            $domTarget.data('initialContent', $domTarget.html());    
-                            $domTarget.empty();
+                            $domTarget.data('initialContent', $domTarget.html());
+                            if (!obj.hasClass('sendNotificationOnCallback')) {
+                                $domTarget.empty();
+                            }
                         },
                         success: function(rep){
                             if (!obj.hasClass('sendNotificationOnCallback')) {
@@ -776,12 +779,21 @@
                             }
                         });
                         
-                        // selectAll
+                        // ui-select-All and ui-select checkbox managment
                         $('body').on('click', '.ui-select-all', function() {
                             var sCheckboxSelector = $(this).data('checkbox-class');
                             var bCheckState = $(this).is(':checked');
                             if (typeof(sCheckboxSelector) !== 'undefined') {
                                 $('.ui-select.' + sCheckboxSelector).prop('checked', bCheckState);
+                            }
+                        });
+                        $('body').on('click', '.ui-select', function() {
+                            if ($(this).data('toggle-selector') !== 'undefined' && $(this).data('select-parent') !== 'undefined') {
+                                if ($($(this).data('select-parent') + ' .ui-select:checked').size() > 1) {
+                                    $($(this).data('toggle-selector')).removeClass('hide');
+                                } else {
+                                    $($(this).data('toggle-selector')).addClass('hide');
+                                }
                             }
                         });
                         
