@@ -386,7 +386,7 @@
                         beforeSend : function(preload) {
                             // Mettre en cache et vider l'objet qui contiendra la reponse
                             $domTarget.data('initialContent', $domTarget.html());                                    
-                            if (!obj.hasClass('sendNotificationOnCallback')) {
+                            if (!oHandler.hasClass('sendNotificationOnCallback')) {
                                 $domTarget.empty();    
                                 Ux.preload($domTarget.attr('id')); // @todo bug
                             }
