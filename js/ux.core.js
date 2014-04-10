@@ -785,14 +785,15 @@
                             var bCheckState = $(this).is(':checked');
                             if (typeof(sCheckboxSelector) !== 'undefined') {
                                 $('.ui-select.' + sCheckboxSelector).prop('checked', bCheckState);
+                                $($(this).data('delete-selector')).removeClass('hide');
                             }
                         });
                         $('body').on('click', '.ui-select', function() {
-                            if ($(this).data('toggle-selector') !== 'undefined' && $(this).data('select-parent') !== 'undefined') {
+                            if ($(this).data('delete-selector') !== 'undefined' && $(this).data('select-parent') !== 'undefined') {
                                 if ($($(this).data('select-parent') + ' .ui-select:checked').size() > 1) {
-                                    $($(this).data('toggle-selector')).removeClass('hide');
+                                    $($(this).data('delete-selector')).removeClass('hide');
                                 } else {
-                                    $($(this).data('toggle-selector')).addClass('hide');
+                                    $($(this).data('delete-selector')).addClass('hide');
                                 }
                             }
                         });
