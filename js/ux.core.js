@@ -44,7 +44,7 @@
                                 spacing_open: 0,
                                 togglerLength_open: 0,
                                 size: 52,
-                                initClosed: false
+                                initClosed: true
                             },
                             south: {
                                 applyDefaultStyles: false,
@@ -466,9 +466,6 @@
                         beforeSend : function(preload) {
                             // Mettre en cache et vider l'objet qui contiendra la reponse
                             $domTarget.data('initialContent', $domTarget.html());
-                            if (!obj.hasClass('sendNotificationOnCallback')) {
-                                $domTarget.empty();
-                            }
                         },
                         success: function(rep){
                             if (!obj.hasClass('sendNotificationOnCallback')) {
@@ -499,7 +496,7 @@
                             $domTarget.removeData('initialContent');
                             
                             if (obj.hasClass('loadOnCallback')) {
-                                Ux.loadView($($(oHandler).data('load-selector')));
+                                Ux.loadView($($(obj).data('load-selector')));
                             }
                             
                             if (obj.hasClass('refreshOnCallback')) {

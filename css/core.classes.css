@@ -234,6 +234,10 @@
 	background: #fff !important;
 }
 
+.greyBg {
+	background: #404040 !important;
+}
+
 .transparentBg { background: transparent !important; }
 
 .transparentBlackBg {  
