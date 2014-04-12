@@ -259,42 +259,9 @@
 
 /* *********************************** CSS3 FX **************************** */
 
-/* Experimental /!\ */
-.transform2d-Y {
-      -webkit-transform: rotateY( 45deg );
-         -moz-transform: rotateY( 45deg );
-          -ms-transform: rotateY( 45deg );         
-           -o-transform: rotateY( 45deg );
-              transform: rotateY( 45deg );
-}
-
-.transform2d-X {
-      -webkit-transform: rotateX( 45deg );
-         -moz-transform: rotateX( 45deg );
-          -ms-transform: rotateX( 45deg );         
-           -o-transform: rotateX( 45deg );
-              transform: rotateX( 45deg );
-}
-
-.transform3d-Y {
-    -moz-transform: translateZ(30px);
-    -ms-transform: translateZ(30px);
-    -o-transform: translateZ(30px);
-    -webkit-transform: translateZ(30px);
-    transform: translateZ(30px);
-}
-
-.transform3d-X {
-    -moz-transform: translateZ(30px);
-    -ms-transform: translateZ(30px);
-    -o-transform: translateZ(30px);
-    -webkit-transform: translateZ(30px);
-    transform: translateZ(30px);
-}
-
 /* Rotate an item */
 
-.ui-fx-rotate {
+.ui-fx-rotate-y:hover {
       -webkit-transform: rotateY( 380deg );
          -moz-transform: rotateY( 380deg );
           -ms-transform: rotateY( 380deg );         
@@ -302,14 +269,22 @@
               transform: rotateY( 380deg );    
 }
 
+.ui-fx-rotate-x:hover {
+      -webkit-transform: rotateX( 380deg );
+         -moz-transform: rotateX( 380deg );
+          -ms-transform: rotateX( 380deg );         
+           -o-transform: rotateX( 380deg );
+              transform: rotateX( 380deg );    
+}
+
 
 /* Zoom effect */
 .ui-fx-zoomOnHover:hover {
-    -moz-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
-    -webkit-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
-    -o-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
-    -ms-transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
-    transform: scale(1.1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -moz-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -o-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -ms-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
     z-index: 9999 !important;
 }
 
