@@ -1,5 +1,12 @@
-/* Layout */
+/* Add easing on all links */
+a {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;   
+}
 
+/* Layout */
 .ui-nav-avatar {
 	width: 20px;
 	margin: 0 10px 0 0;
@@ -17,7 +24,6 @@
 }
 
 .ui-layout-content {
-	background: white;
 	overflow: auto;	
 }
 
@@ -25,32 +31,63 @@
 .ui-layout-center .ui-layout-content {
     padding: 15px 0 0 0;
 }
-
-.navbar-default a.navbar-brand {
-    color: #5bc0de;
+.navbar {
+    border: none;
 }
-.navbar-default a.navbar-brand img {
-    width: 46px;
+.navbar-default .navbar-brand {
+    color: #fff;
 }
-.navbar-default a.navbar-brand:hover {
+.navbar-default .navbar-brand img {
+    width: 32px;
+}
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+.navbar-default .navbar-brand:hover {
+    background: #5bc0de;
     color: #fff;
 }
 
 nav.navbar-default{
     border: none;
 }
-#app-menu ul li a {
+
+#app-menu {
+    color: #5bc0de;
+}
+.dropdown-menu {
+    background : #404040;
+    color: #fff;
+}
+.dropdown-menu>li>a {
+    color: #fff;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: none;
+}
+.navbar-default .navbar-collapse.in .showOnHover .targetToShow {
+    display: block;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+    background: #5bc0de;
+    color: #fff;
+}
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a {
     color: #fff;
 }
 #app-menu ul li.active a {
     background: #5bc0de;
-}
-#app-menu ul li.active a:hover {
-
+    color: #fff;
 }
 #app-menu ul li a:hover {
-
+    background: #5bc0de;
+    color: #fff;
 }
+
+
 .navbar-nav>li.active {
     color: #5bc0de;
     font-weight: bold;

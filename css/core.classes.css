@@ -13,6 +13,12 @@
     z-index: 9998;
 }
 
+/* ui-grid views */
+.ui-grid-item {
+    margin: 0 0 15px 0;
+}
+
+
 .rounded-top {
 	-moz-border-radius: 10px 10px 0px 0px; /* Firefox */
 	-webkit-border-radius: 10px 10px 0px 0px; /* Safari, Chrome */
@@ -25,16 +31,28 @@
 	border-radius: 0px 0px 10px 10px; /* CSS3 */
 }
 
+.rounded-bottom-right {
+	-moz-border-radius: 0px 0px 0px 10px; /* Firefox */
+	-webkit-border-radius: 0px 0px 0px 10px; /* Safari, Chrome */
+	border-radius: 0px 0px 0px 10px; /* CSS3 */
+}
+
+.rounded-bottom-left {
+	-moz-border-radius: 0px 0px 10px 0; /* Firefox */
+	-webkit-border-radius: 0px 0px 10px 0; /* Safari, Chrome */
+	border-radius: 0px 0px 10px 0; /* CSS3 */
+}
+
 .rounded-right {
-	-moz-border-radius: 0px 10px 0px 10px; /* Firefox */
-	-webkit-border-radius: 10px 0px 0px 10px; /* Safari, Chrome */
-	border-radius: 0px 10px 0px 10px; /* CSS3 */
+	-moz-border-radius: 0px 0px 10px 10px; /* Firefox */
+	-webkit-border-radius: 0px 0px 10px 10px; /* Safari, Chrome */
+	border-radius: 0px 0px 10px 10px; /* CSS3 */
 }
 
 .rounded-left {
-	-moz-border-radius: 10px 0px 10px 0px; /* Firefox */
-	-webkit-border-radius: 10px 0px 10px 0px; /* Safari, Chrome */
-	border-radius: 10px 0ptextx 10px 0px; /* CSS3 */
+	-moz-border-radius: 10px 10px 0px 0px; /* Firefox */
+	-webkit-border-radius: 10px 10px 0px 0px; /* Safari, Chrome */
+	border-radius: 10px 10px 0px 0px; /* CSS3 */
 }
 .rounded {
 	-moz-border-radius: 10px; /* Firefox */
@@ -161,15 +179,29 @@
 	text-shadow: 1px 1px #000;
 }
 .blueTextShadow {
-	text-shadow: 1px 1px #48acde;
+	text-shadow: 1px 1px #5bc0de;
 }
 
 .whiteFontColor {
 	color: #fff;
 }
-
+.whiteLinkColor a {
+    color: #fff;
+}
+.whiteLinkColor a:hover {
+    color: #404040 !important;
+}
 .blackFontColor {
 	color: #000;
+}
+.blueFontColor {
+	color: #5bc0de;
+}
+.whiteOnHover:hover {
+	color: #fff !important;
+}
+.greyOnHover:hover {
+	color: #404040 !important;
 }
 
 .underline {
@@ -234,6 +266,10 @@
 	background: #fff !important;
 }
 
+.blueBg {
+	background: #5bc0de !important;
+}
+
 .greyBg {
 	background: #404040 !important;
 }
@@ -245,8 +281,8 @@
 	color: #fff;
 } 
 
-/* Tweak to enable the GPU to render the layout */
-.GPUrender{
+/* Tweak to render a dom element directly with GPU /!\ Experimental don't apply on wall body for mobile! */
+.gpu-render{
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
@@ -254,32 +290,123 @@
     transform: translate3d(0,0,0);
     
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     -webkit-perspective: 1400;
+    perspective: 1400;
 }
 
 /* *********************************** CSS3 FX **************************** */
 
 /* Rotate an item */
+.ui-rotate:hover {
+    -webkit-transform: rotate(380deg);
+    -moz-transform: rotate(380deg);
+    -o-transform: rotate(380deg);
+    -ms-transform: rotate(380deg);
+    transform: rotate(380deg);
+}
+.ui-rotate-x {
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 
-.ui-fx-rotate-y:hover {
-      -webkit-transform: rotateY( 380deg );
-         -moz-transform: rotateY( 380deg );
-          -ms-transform: rotateY( 380deg );         
-           -o-transform: rotateY( 380deg );
-              transform: rotateY( 380deg );    
+}
+.ui-rotate-y {
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+}
+.ui-rotate-y:hover {
+      -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+          -ms-transform: rotateY( 180deg );         
+           -o-transform: rotateY( 180deg );
+              transform: rotateY( 180deg );    
 }
 
-.ui-fx-rotate-x:hover {
-      -webkit-transform: rotateX( 380deg );
-         -moz-transform: rotateX( 380deg );
-          -ms-transform: rotateX( 380deg );         
-           -o-transform: rotateX( 380deg );
-              transform: rotateX( 380deg );    
+.ui-rotate-x:hover {
+      -webkit-transform: rotateX( 180deg );
+         -moz-transform: rotateX( 180deg );
+          -ms-transform: rotateX( 180deg );         
+           -o-transform: rotateX( 180deg );
+              transform: rotateX( 180deg );    
 }
 
+/* Flip effect */
+.ui-flip {
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    perspective: 600px;
+}
+.ui-flip .front {
+    position: relative;
+    z-index: 900;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.9);
+
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+         -moz-transform: rotateX(0deg) rotateY(0deg);
+                    transform: rotateX(0deg) rotateY(0deg);
+
+    -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+         -moz-backface-visibility: hidden;
+                    backface-visibility: hidden;
+}
+.ui-flip.flip .front {
+    z-index: 900;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+
+    -webkit-transform: rotateY(180deg);
+         -moz-transform: rotateY(180deg);
+                    transform: rotateY(180deg);
+}
+
+.ui-flip .back {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    width: inherit;
+    height: inherit;
+
+    -webkit-transform: rotateY(-180deg);
+         -moz-transform: rotateY(-179deg); /* setting to 180 causes an unnatural-looking half-flip */
+                    transform: rotateY(-179deg);
+
+    -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+         -moz-backface-visibility: hidden;
+                    backface-visibility: hidden;
+}
+
+.ui-flip.flip .back {
+    z-index: 1000;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+}
 
 /* Zoom effect */
-.ui-fx-zoomOnHover:hover {
+.ui-zoomOnHover {
+    -moz-transform: scale(0.9) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-transform: scale(0.9) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -o-transform: scale(0.9) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    -ms-transform: scale(0.9) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+    transform: scale(0.9) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
+}
+.ui-zoomOnHover:hover {
     -moz-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
     -webkit-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
     -o-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
@@ -287,19 +414,47 @@
     transform: scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 0deg);
     z-index: 9999 !important;
 }
+.ui-zoomAndRotateOnHover:hover {
+    -moz-transform: scale(1) rotate(-30deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-transform: scale(1) rotate(-30deg) translate(0px, 0px) skew(0deg, 0deg);
+    -o-transform: scale(1) rotate(-30deg) translate(0px, 0px) skew(0deg, 0deg);
+    -ms-transform: scale(1) rotate(-30deg) translate(0px, 0px) skew(0deg, 0deg);
+    transform: scale(1) rotate(-30deg) translate(0px, 0px) skew(0deg, 0deg);
+    z-index: 9999 !important;
+}
 
+/*
+    Fade in on hover 
+*/
 
-/* fadeOnHover() fonctionne plus sur les version recente de chrome /!\ */
+.ui-fadeInOnHover  {
+	filter: alpha(opacity=0.7); /* internet explorer */
+	-khtml-opacity: 0.7;      /* khtml, old safari */
+	-moz-opacity: 0.7;       /* mozilla, netscape */
+	-webkit-opacity: 0.7;       /* webkit */
+	opacity: 0.7;           /* fx, safari, opera */	
+}
 
-.ui-fx-fadeOnHover  {
-	filter: alpha(opacity=100); /* internet explorer */
+.ui-fadeInOnHover:hover {
+	filter: alpha(opacity=1); /* internet explorer */
+	-khtml-opacity: 1;      /* khtml, old safari */
+	-moz-opacity: 1;       /* mozilla, netscape */
+	-webkit-opacity: 1;       /* mozilla, netscape */
+	opacity: 1;           /* fx, safari, opera */
+}
+
+/*
+    Fade out on hover 
+*/
+.ui-fadeOutOnHover  {
+	filter: alpha(opacity=1); /* internet explorer */
 	-khtml-opacity: 1;      /* khtml, old safari */
 	-moz-opacity: 1;       /* mozilla, netscape */
 	-webkit-opacity: 1;       /* webkit */
 	opacity: 1;           /* fx, safari, opera */	
 }
 
-.ui-fx-fadeOnHover:hover {
+.ui-fadeOutOnHover:hover {
 	filter: alpha(opacity=0.2); /* internet explorer */
 	-khtml-opacity: 0.2;      /* khtml, old safari */
 	-moz-opacity: 0.2;       /* mozilla, netscape */
@@ -404,7 +559,7 @@
 		background-color: #1eff00;
 	}
 	50% {
-		background-color: #48acde;
+		background-color: #5bc0de;
 	}
 	75% {
 		background-color: #FFFF00;

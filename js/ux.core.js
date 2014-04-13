@@ -43,8 +43,8 @@
                                 spacing_closed: 0,
                                 spacing_open: 0,
                                 togglerLength_open: 0,
-                                size: 52,
-                                initClosed: true
+                                size: 50,
+                                initClosed: false
                             },
                             south: {
                                 applyDefaultStyles: false,
@@ -325,7 +325,7 @@
                 loadScroll: function($obj) {
 
                     var sSelector = '#'+$obj.attr('id');                            
-                    var iOffSet = $(sSelector).data('ioffset', $(sSelector + ' .item').length);                                                        
+                    var iOffSet = $(sSelector).data('ioffset', $(sSelector + ' ui-grid-item').length);                                                        
                     var aData = $(sSelector).data();
                     $.ajax({
                         type: 'POST',
@@ -631,7 +631,7 @@
                             $(this).data('curCol',0);
                             $(this).data('grid-loaded', true);
                         }
-                        $(sGridSelector + ' .item').each(function() {
+                        $(sGridSelector + ' .ui-grid-item').each(function() {
                             
                             if ((iColumnsIndex + 1)  > iColumnsCount) {
                                 iColumnsIndex = 0;
@@ -764,10 +764,11 @@
                             }
                             return false;
                         });    
-
-                        /**
-                         * Ux bindings
-                         */
+                        
+                        // Flip effect
+                        $('body').on('mouseenter mouseleave', '.ui-flip', function(){
+                            $(this).toggleClass('flip');
+                        });
                         
                         // ui confirm @todo afficher une modale au lieu des dialogs natifs
                         $('body').on('click', '.ui-confirm', function() {
@@ -837,7 +838,7 @@
                         // Tooltip
                         $('.ui-tip').tooltip({
                             placement: 'auto',
-                            delay: 0
+                            delay: { show: 0, hide: 0 }
                         });
                         
                         // Give focus to a selector
@@ -847,7 +848,7 @@
                         
                         // Global search
                         $('body').on('submit', 'form#general-search', function() {
-                            $('.ui-sendform[data-form=#general-search]').trigger('click');
+                            $('.ui-sendform[data-form=#app-global-search]').trigger('click');
                             return false;
                          });
                         
@@ -878,7 +879,16 @@
 
                     // Init carroussel
                     this.initCarousels();
-
+                    
+                    $('.ui-equalize-height').each(function(){
+                       var maxHeight = 0;
+                       $('.ui-equalize').each(function() {
+                           if ($(this).height() > maxHeight) {
+                               maxHeight = $(this).height();
+                               console.log(maxHeight);
+                           }
+                       });
+                    });
                 }
             };
 
