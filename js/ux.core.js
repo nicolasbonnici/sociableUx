@@ -114,7 +114,8 @@
                         // show panes
                         $('body').on('click', '.ui-pane-show', function() {
                             if (typeof($(this).attr('data-pane')) !== 'undefined') {
-                                Ux.appLayout.show($(this).attr('data-pane'), false); 
+                                alert('ok');
+                                Ux.appLayout.show($(this).attr('data-pane')); 
                             }
                             
                         });                           
@@ -122,14 +123,6 @@
                         if ( $('.ui-pane-pin').size() != 0 ) {    
                             this.appLayout.addPinBtn('.ui-pane-pin', $('.ui-pane-pin').attr('data-pane'));
                         }
-
-                        // Sauvegrder en cookie l etat du layout
-                        $(window).unload(function() { 
-                            // Sauvegarder l'organisation du layout
-                            this.appLayout.save();  
-                        }); 
-                                                    
-
                     }   
                         
                 },
@@ -555,6 +548,9 @@
                             });                             
                         });
                         
+                    } else {
+                        // Fire all Ux components
+                        this.fireUx();
                     }
                 },             
                 
@@ -712,9 +708,9 @@
                 },
                 
                 /**
-                 * Add Ux event listeners
+                 * Ux event listeners (call once on the onLoad() hook)
                  */
-                initEventListeners: function() {
+                registerBodyListeners: function() {
                     if (!$('body').data('UxListened')) {
                         
                         // Ux form helpers
@@ -752,18 +748,6 @@
                             }
                             return false;
                         });        
-                        
-                        // load on scroll
-                        $('.ui-loadscroll').scroll(function(){
-                            if ($(this).scrollTop() === ($(this).prop('scrollHeight') - $(this).outerHeight())){
-                                if ($(this).find('.ui-scroll-loadable')) {
-                                    $('.ui-scroll-loadable').each(function() {
-                                        Ux.loadScroll($(this));                                 
-                                    });
-                                }
-                            }
-                            return false;
-                        });    
                         
                         // Flip effect
                         $('body').on('mouseenter mouseleave', '.ui-flip', function(){
@@ -858,12 +842,66 @@
                     
                 },
                 
+                registerListeners: function() {
+                    
+                    // Equalize dom node childrens height
+                    $('.ui-equalize-height').each(function(){
+                        var maxHeight = 0;
+                        $('.ui-equalize').each(function() {
+                            if ($(this).height() > maxHeight) {
+                                maxHeight = $(this).height();
+                            }
+                        });
+                     });
+                    
+                    // load on scroll
+                    $('.ui-loadscroll').scroll(function(){
+                        if ($(this).scrollTop() === ($(this).prop('scrollHeight') - $(this).outerHeight())){
+                            if ($(this).find('.ui-scroll-loadable')) {
+                                $('.ui-scroll-loadable').each(function() {
+                                    Ux.loadScroll($(this));
+                                });
+                            }
+                        }
+                        return false;
+                    });
+                },
+                
+                /**
+                 * App load hook
+                 * Call when app is fully loaded
+                 */
+                onLoad: function() {
+                    // Init events bindings
+                    this.registerBodyListeners();
+                    this.registerListeners();
+                    
+                    // Lauch all asynch calls
+                    this.loadView();
+                },
+                
+                /**
+                 * App ajax stop event hook
+                 * Call just after an asynch call
+                 */
+                onAjaxStop: function() {
+                    // Fire new Ux components from an asynch call response
+                    this.fireUx();
+                },
+                
+                /**
+                 * App unload event hook
+                 * Call at page unload
+                 */
+                onUnload: function() {
+                    // Sauvegarder l'organisation du layout
+                    this.appLayout.save();  
+                },
+                
                 /**
                  * Fire all ux components
                  */
                 fireUx: function() {
-                    // Init events bindings
-                    this.initEventListeners();
                     
                     // Fire app layout
                     this.initAppLayout();
@@ -880,15 +918,6 @@
                     // Init carroussel
                     this.initCarousels();
                     
-                    $('.ui-equalize-height').each(function(){
-                       var maxHeight = 0;
-                       $('.ui-equalize').each(function() {
-                           if ($(this).height() > maxHeight) {
-                               maxHeight = $(this).height();
-                               console.log(maxHeight);
-                           }
-                       });
-                    });
                 }
             };
 
