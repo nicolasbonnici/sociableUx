@@ -60,7 +60,7 @@
 	border-radius: 10px; /* CSS3 */
 }
 
-
+/* @todo decliner des fx shadowOnHover et insetShadowOnHover*/
 .ui-shadow {
 	-moz-box-shadow: #000 0 0 15px;
 	-webkit-box-shadow: #000 0 0 15px;
@@ -77,18 +77,18 @@
 }
 
 .ui-shadow-inset {
-	-moz-box-shadow: inset #000 0 0 15px;
-	-webkit-box-shadow: inset #000 0 0 15px;
-	-ms-box-shadow: inset #000 0 0 15px;
-	-o-box-shadow: inset #000 0 0 15px;           
-	box-shadow: inset #000 0 0 15px;
+    -moz-box-shadow: inset 10px 10px 5px 0px #404040;
+    -webkit-box-shadow: inset 10px 10px 5px 0px #404040;
+    -o-box-shadow: inset 10px 10px 5px 0px #404040;
+    box-shadow: inset 10px 10px 5px 0px #404040;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#404040, Direction=134, Strength=5);
 }
 .ui-shadow-inset:hover {
-	-moz-box-shadow: inset #000 0 0 25px;
-	-webkit-box-shadow: inset #000 0 0 25px;
-	-ms-box-shadow: inset #000 0 0 25px;
-	-o-box-shadow: inset #000 0 0 25px;           
-	box-shadow: inset #000 0 0 25px;
+    -moz-box-shadow: inset 25px 25px 5px 0px #404040;
+    -webkit-box-shadow: inset 25px 25px 5px 0px #404040;
+    -o-box-shadow: inset 25px 25px 5px 0px #404040;
+    box-shadow: inset 25px 25px 5px 0px #404040;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#404040, Direction=134, Strength=5);
 }
 
 .ui-shadow-white {
