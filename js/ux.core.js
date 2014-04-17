@@ -627,7 +627,7 @@
                             $(this).data('curCol',0);
                             $(this).data('grid-loaded', true);
                         }
-                        $(sGridSelector + ' .ui-grid-item').each(function() {
+                        $(sGridSelector + ' .ui-grid-item.notSorted').each(function() {
                             
                             if ((iColumnsIndex + 1)  > iColumnsCount) {
                                 iColumnsIndex = 0;
@@ -635,6 +635,7 @@
                             $(sGridSelector + ' .ui-grid-column').eq(iColumnsIndex).append($(this));
                             iColumnsIndex++;
                             $(this).data('curCol', iColumnsIndex);
+                            $(this).removeClass('notSorted');
                         });
                     });
                 },
@@ -846,11 +847,14 @@
                     
                     // Equalize dom node childrens height
                     $('.ui-equalize-height').each(function(){
-                        var maxHeight = 0;
+                        $(this).data('equalized-height', $(this).parent('.ui-equalize-height .ui-equalize:first').height());
                         $('.ui-equalize').each(function() {
                             if ($(this).height() > maxHeight) {
-                                maxHeight = $(this).height();
+                                $(this).parent('.ui-equalize-height').data('equalizd-height', $(this).height());
                             }
+                            console.log($(this).parent('.ui-equalize-height').data('equalizd-height'));
+                            
+                            $(this).height($(this).parent('.ui-equalize-height').data('equalizd-height'));
                         });
                      });
                     
@@ -864,6 +868,54 @@
                             }
                         }
                         return false;
+                    });
+                },
+                
+                /**
+                 * Afficher des elements en mode contentFlow
+                 * @todo 3d-transform sur les items
+                 */
+                initContentFlow: function() {
+                    $('.ui-contentflow').each(function() {
+                        if ($(this).attr('id') === 'undefined') {
+                            Ux.sendNotification('No id attribute on a ui-contentflow widget!', 'error', 'glyphicon glyphicon-error-sign', false);
+                        } else {
+                            var sNodeId = $(this).attr('id');
+
+                            var sConnectedCarousel = null;
+                            if (typeof $(this).data('connected-carousel') !== 'undefined') {
+                                sConnectedCarousel = $(this).data('connected-carousel');
+                            }
+                            
+                            var oContentFlow = new ContentFlow(sNodeId, {
+                                visibleItems : 10,
+                                endOpacity : 0.6,
+                                startItem : $('#' + sNodeId + ' div[data-carousel=2]').index(),
+                                maxItemHeight : 240,
+                                scaleFactorLandscape : 1,
+                                onReachTarget : function(item) {
+                                    // Show details
+                                    $('.details').addClass('hide');
+                                    $( $('#' + sNodeId + ' div.item').eq(item.index).data('toggle-selector') ).toggleClass('hide');
+                                },
+                                onclickActiveItem : function(item) {
+                                    if (sConnectedCarousel !== null) {
+                                        $(sConnectedCarousel).carousel($('#' + sNodeId + ' div.item').eq(item.index).data('carousel'));
+                                    }
+                                },
+                                onclickInactiveItem : function(item) {
+                                    if (sConnectedCarousel !== null) {
+                                        $(sConnectedCarousel).carousel($('#' + sNodeId + ' div.item').eq(item.index).data('carousel'));
+                                    }
+                                    
+                                }
+                            });
+                            
+                            if (typeof $(this).data('connected-carousel') !== 'undefined') {
+                                $(sConnectedCarousel).data('contentflow', oContentFlow );
+                            }
+                            
+                        }
                     });
                 },
                 
@@ -917,6 +969,9 @@
 
                     // Init carroussel
                     this.initCarousels();
+                    
+                    // contentflow widgets
+                    this.initContentFlow();
                     
                 }
             };

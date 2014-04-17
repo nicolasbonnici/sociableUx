@@ -144,6 +144,11 @@ border-color: #f0ad4e;
 border-color: #5bc0de;
 }
 
+/* Content Flow */
+.ui-contentflow {
+    margin: 15px 0 0 0;
+}
+
 /* Grid */
 .ui-grid  {
     
