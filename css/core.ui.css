@@ -144,6 +144,13 @@ border-color: #f0ad4e;
 border-color: #5bc0de;
 }
 
+/* Grid */
+.ui-grid  {
+    
+}
+.ui-grid-item {
+    margin: 0 0 15px 0 ;
+}
 /* pnotify */
 .ui-pnotify.ui-notification .ui-pnotify-container {
 	background-color: #404040 !important;
