@@ -758,6 +758,11 @@
                             return false;
                          });
                         
+                        // Asynch forms
+                        $('body').on('submit', '.asynchSendOnSubmit', function () {
+                            return false; 
+                        });
+                        
                         // Flag body
                         $('body').data('UxListened', true);
                     }

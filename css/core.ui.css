@@ -80,6 +80,10 @@ nav.navbar-default{
     width: 64px;
 }
 
+#app-header {
+    height: 70px;
+}
+
 #ux-content {
     background: url(../img/bg.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
