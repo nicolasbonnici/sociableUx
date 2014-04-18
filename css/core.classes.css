@@ -334,11 +334,12 @@
 }
 
 /* Flip effect */
-.ui-flip {
+.ui-flipOnHover {
     -webkit-perspective: 600px;
     -moz-perspective: 600px;
     perspective: 600px;
 }
+
 .ui-flip .front {
     position: relative;
     z-index: 900;
@@ -397,6 +398,12 @@
     transform: rotateX(0deg) rotateY(0deg);
     box-shadow: 0 15px 50px rgba(0,0,0,0.2);
 }
+/* ui-clickflip back ^_^ */
+.ui-clickflip {
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    perspective: 600px;
+}
 
 /* Zoom effect */
 .ui-zoomOnHover {
@@ -428,11 +435,11 @@
 */
 
 .ui-fadeInOnHover  {
-	filter: alpha(opacity=0.7); /* internet explorer */
-	-khtml-opacity: 0.7;      /* khtml, old safari */
-	-moz-opacity: 0.7;       /* mozilla, netscape */
-	-webkit-opacity: 0.7;       /* webkit */
-	opacity: 0.7;           /* fx, safari, opera */	
+	filter: alpha(opacity=0); /* internet explorer */
+	-khtml-opacity: 0;      /* khtml, old safari */
+	-moz-opacity: 0;       /* mozilla, netscape */
+	-webkit-opacity: 0;       /* webkit */
+	opacity: 0;           /* fx, safari, opera */	
 }
 
 .ui-fadeInOnHover:hover {

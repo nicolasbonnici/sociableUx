@@ -9,121 +9,35 @@
                 initAppLayout: function() {
                     //*************************************************** @layout *************************************************
                     // @see init layout application level (aka BO)
-                    if ($('body').hasClass('layout') && !$('body').data('ui-layout-loaded')) {
+                    if (!$('body').data('ui-layout-loaded')) {
 
                         $('body').data('ui-layout-loaded', true);
-                        
-                        this.appLayout = $('body').layout({
-                            useStateCookie: true,
-                            cookie: {
-                                name:   "sociable.ux.layout", // optional
-                                expires: 90 // days
-                            },
-                            defaults: {
-                                applyDefaultStyles: false,
-                                fxName: 'drop',
-                                fxSpeed: 300,
-                                spacing_closed: 50,
-                                spacing_open: 10,
-                                resizerTip: 'Ouvrir/fermer',
-                                sliderTip: 'Redimmensionner',
-                                fxSettings_open: { easing: 'easeOutBounce' },
-                                fxSettings_close: { easing: 'easeOutBounce' },
-                                enableCursorHotkey: false
-                            },
-                            center: {
-                                applyDefaultStyles: false,
-                                spacing_closed: 0,
-                                spacing_open: 0,
-                                size: '100%'
-                            },
-                            north: {
-                                applyDefaultStyles: false,
-                                showOverflowOnHover: true,
-                                spacing_closed: 0,
-                                spacing_open: 0,
-                                togglerLength_open: 0,
-                                size: 50,
-                                initClosed: false
-                            },
-                            south: {
-                                applyDefaultStyles: false,
-                                spacing_closed: 0,
-                                spacing_open: 0,
-                                size: 90,
-                                togglerLength_closed: "100%",
-                                togglerLength_open: 50,
-                                initClosed:    true,
-                                onopen_end: function() {
-                                    return false;
-                                },
-                                onclose_end: function() {
-                                    return false;
-                                }
-                            },
-                            east: {
-                                size:  150,
-                                applyDefaultStyles: false,
-                                initClosed: true,
-                                togglerLength_closed: 0,
-                                togglerLength_open: 0,
-                                spacing_open: 0,
-                                spacing_closed: 0,
-                                onopen_end: function() {
-                                },
-                                onclose_end: function() {
-                                }
-                            },
-                            west: {
-                                size: 320,
-                                applyDefaultStyles: false,
-                                spacing_open: 0,
-                                spacing_closed: 0,
-                                togglerLength_closed: 0,
-                                initClosed: true,
-                                slideTrigger_close: 'mouseout',
-                                slideTrigger_open: 'mouseover',                                             
-                                onopen_end: function() {
-                                },
-                                onclose_end: function() {
-                                }                                    
-                            }                                    
+                        console.log('ok');
+                        var snapper = new Snap({
+                            element: document.getElementById('ux-content')
                         });
-                        // toggle panes
-                        $('body').on('click', '.ui-pane-toggle', function() {
-                            
-                            if (typeof($(this).attr('data-pane')) !== 'undefined') {
-                                Ux.appLayout.toggle($(this).attr('data-pane'));
+                        
+                        var addEvent = function addEvent(element, eventName, func) {
+                            if (element.addEventListener) {
+                                return element.addEventListener(eventName, func, false);
+                            } else if (element.attachEvent) {
+                                return element.attachEvent("on" + eventName, func);
                             }
-                        });                           
-                        // open panes
-                        $('body').on('click', '.ui-pane-open', function() {
-                            
-                            if (typeof($(this).attr('data-pane')) !== 'undefined') {
-                                Ux.appLayout.open($(this).attr('data-pane'));
-                            }
-                        });                           
-                        // close panes
-                        $('body').on('click', '.ui-pane-close', function() {
-                            
-                            if (typeof($(this).attr('data-pane')) !== 'undefined') {
-                                Ux.appLayout.close($(this).attr('data-pane'));
-                            }
-                            
-                        });                           
-                        // show panes
-                        $('body').on('click', '.ui-pane-show', function() {
-                            if (typeof($(this).attr('data-pane')) !== 'undefined') {
-                                alert('ok');
-                                Ux.appLayout.show($(this).attr('data-pane')); 
-                            }
-                            
-                        });                           
-                        // Pin button
-                        if ( $('.ui-pane-pin').size() != 0 ) {    
-                            this.appLayout.addPinBtn('.ui-pane-pin', $('.ui-pane-pin').attr('data-pane'));
-                        }
-                    }   
+                        };
+
+                        addEvent(document.getElementById('open-left'), 'click', function(){
+                            snapper.open('left');
+                        });
+
+
+                        document.getElementById('ux-global-search-input').addEventListener('focus', function(){
+                            snapper.expand('left');
+                        });
+                        
+                        document.getElementById('ux-global-search-input').addEventListener('blur', function(){
+                            snapper.open('left');
+                        });
+                    }
                         
                 },
                 
@@ -754,6 +668,13 @@
                         $('body').on('mouseenter mouseleave', '.ui-flip', function(){
                             $(this).toggleClass('flip');
                         });
+                        // set up click/tap panels
+                        $('.ui-clickflip').toggle(function(){
+                            $(this).addClass('flip');
+                        },function(){
+                            $(this).removeClass('flip');
+                        });
+
                         
                         // ui confirm @todo afficher une modale au lieu des dialogs natifs
                         $('body').on('click', '.ui-confirm', function() {
