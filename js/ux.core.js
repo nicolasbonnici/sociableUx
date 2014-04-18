@@ -12,7 +12,6 @@
                     if (!$('body').data('ui-layout-loaded')) {
 
                         $('body').data('ui-layout-loaded', true);
-                        console.log('ok');
                         var snapper = new Snap({
                             element: document.getElementById('ux-content')
                         });
@@ -28,7 +27,6 @@
                         addEvent(document.getElementById('open-left'), 'click', function(){
                             snapper.open('left');
                         });
-
 
                         document.getElementById('ux-global-search-input').addEventListener('focus', function(){
                             snapper.expand('left');
@@ -564,6 +562,11 @@
                             $('body').on('change', $(this).attr('id'), function() {
                                $(this).data('bHasChange', true); 
                             });
+                            
+                            $(this).submit(function() {
+                                return false;
+                            });
+                            
                             $(this).data('HasChangesListnenerFired', true);
                         } 
                      });
@@ -752,11 +755,6 @@
                            $($(this).data('focus-selector')).focus(); 
                         });
                         
-                        // Global search
-                        $('body').on('submit', 'form#general-search', function() {
-                            $('.ui-sendform[data-form=#app-global-search]').trigger('click');
-                            return false;
-                         });
                         
                         // Asynch forms
                         $('body').on('submit', '.asynchSendOnSubmit', function () {
@@ -777,9 +775,7 @@
                         $('.ui-equalize').each(function() {
                             if ($(this).height() > maxHeight) {
                                 $(this).parent('.ui-equalize-height').data('equalizd-height', $(this).height());
-                            }
-                            console.log($(this).parent('.ui-equalize-height').data('equalizd-height'));
-                            
+                            }                            
                             $(this).height($(this).parent('.ui-equalize-height').data('equalizd-height'));
                         });
                      });
