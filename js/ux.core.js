@@ -754,6 +754,7 @@
                         
                         // Asynch forms
                         $('body').on('submit', '.asynchSendOnSubmit', function () {
+                            console.log('la');
                             return false; 
                         });
                         
