@@ -563,10 +563,6 @@
                                $(this).data('bHasChange', true); 
                             });
                             
-                            $(this).submit(function() {
-                                return false;
-                            });
-                            
                             $(this).data('HasChangesListnenerFired', true);
                         } 
                      });
