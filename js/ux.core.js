@@ -318,6 +318,7 @@
                                         
                                 }
                             }
+                            $('#activityDebug').append(rep.debug);   // @todo selecteur en config    
                         },
                         error: function(err){                            
                             // Restore cached content
@@ -393,6 +394,7 @@
                                         
                                 }
                             }
+                            $('#activityDebug').append(rep.debug);   // @todo selecteur en config    
                         },
                         error: function(err){                            
                             // Restore cached content
