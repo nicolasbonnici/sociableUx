@@ -868,8 +868,7 @@
                  * Call at page unload
                  */
                 onUnload: function() {
-                    // Sauvegarder l'organisation du layout
-                    this.appLayout.save();  
+
                 },
                 
                 /**

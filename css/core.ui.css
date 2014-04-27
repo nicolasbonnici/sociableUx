@@ -160,6 +160,30 @@ nav.navbar-default{
     color: #fff;
 }
 
+.app-bundle-icon {
+    width: 64px;
+}
+
+.app-bundles {
+    color: #fff;
+}
+
+.app-bundle-item {
+    background: transparent;
+    border: none;
+}
+
+a.list-group-item.app-bundle-item {
+
+    color: #5bc0de;
+    font-weight: bold;
+}
+
+a.list-group-item.app-bundle-item.active {
+
+    color: #fff;
+    font-weight: bold;
+}
 
 /* bs callout */
 .bs-callout {
