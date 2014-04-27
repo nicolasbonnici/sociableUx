@@ -230,7 +230,8 @@
                 loadScroll: function($obj) {
 
                     var sSelector = '#'+$obj.attr('id');                            
-                    var iOffSet = $(sSelector).data('ioffset', $(sSelector + ' .ui-grid-item').length);                                                        
+                    var iOffSet = $(sSelector).data('ioffset', $(sSelector + ' .ui-item').length);
+                    console.log($(sSelector + ' .ui-item').length);
                     var aData = $(sSelector).data();
                     $.ajax({
                         type: 'POST',

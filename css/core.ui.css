@@ -75,7 +75,6 @@ nav.navbar-default{
 }
 
 /* Layout */
-
 .app-logo {
     width: 64px;
 }
@@ -85,11 +84,7 @@ nav.navbar-default{
 }
 
 #ux-content {
-    background: url(../img/bg.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover; 
-    -o-background-size: cover; 
-    background-size: cover;
+    background: #404040;
 }
 #ux-content .container,
 #ux-content .container-fluid {
