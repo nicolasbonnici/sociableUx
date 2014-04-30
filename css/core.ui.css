@@ -86,8 +86,7 @@ nav.navbar-default{
 #ux-content {
     background: #404040;
 }
-#ux-content .container,
-#ux-content .container-fluid {
+#ux-content {
     padding: 75px 0 0 0;
 }
 
@@ -151,12 +150,11 @@ nav.navbar-default{
 }
 
 .snap-drawers {
-  background: #404040;
+
 }
 
 .snap-drawer {
     padding: 75px 5px 10px 5px;
-    background: #404040;
     color: #fff;
 }
 
