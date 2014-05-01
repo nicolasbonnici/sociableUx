@@ -13,7 +13,9 @@
 
                         $('body').data('ui-layout-loaded', true);
                         var snapper = new Snap({
-                            element: document.getElementById('ux-content')
+                            element: document.getElementById('ux-content'),
+                            maxPosition: 360,
+                            minPosition: -360
                         });
                         
                         var addEvent = function addEvent(element, eventName, func) {
