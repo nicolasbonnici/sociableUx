@@ -6,9 +6,10 @@
 (function($) {
         $.fn.userExperience = function(params) {
             var Ux = {
+                /**
+                 * Init global app layout
+                 */
                 initAppLayout: function() {
-                    //*************************************************** @layout *************************************************
-                    // @see init layout application level (aka BO)
                     if (!$('body').data('ui-layout-loaded')) {
 
                         $('body').data('ui-layout-loaded', true);
@@ -42,6 +43,9 @@
                         
                 },
                 
+                /**
+                 * Simple no easing dom node toggle
+                 */
                 toggle: function($oItem) {
                     $oItem.toggleClass('hide');
                 },
@@ -74,6 +78,9 @@
                     });                    
                 },     
                 
+                /**
+                 * Hide all notifications
+                 */
                 hideNotifications: function() {
                     $.pnotify_remove_all();
                 },
@@ -97,7 +104,7 @@
                 },                
                 
                 /**
-                 * wysiwyg editor
+                 * init wysiwyg editor
                  * @todo test $.fn.summernote first
                  */ 
                 initEditors: function() {
@@ -110,6 +117,7 @@
                 },                              
                 
                 /**
+                 * Inline editable elements
                  * @dependancy bootstrap-editable plugin
                  * @todo debugger et passer proprement les params en fonctions des differents types d'instance du plugin
                  */
@@ -344,7 +352,9 @@
                     });
                 },
                 
-                // Envoyer un formulaire en asynchrone
+                /**
+                 * Formulaires asynchrones
+                 */
                 sendForm: function(obj) {
 
                     var sFormSelector = obj.data('form');
@@ -420,7 +430,9 @@
                     });
                 },
                 
-                // Load some part of the view asynch to boost loadtime and simplify view refresh process
+                /**
+                 * Asynch call to refresh all ajax DOM nodes
+                 */
                 loadView: function() {
                     if ($('.ui-loadable').size() > 0) {
                         
@@ -472,6 +484,9 @@
                     }
                 },             
                 
+                /**
+                 * Perform an ansynch call to reload an ajax DOM node
+                 */
                 reload: function(oItem) {                         
                     
                     var sUrlTarget = '';
@@ -764,12 +779,27 @@
                             return false; 
                         });
                         
+                        // load on scroll
+                        $('.ui-loadscroll').bind('scroll', function() {
+                            if ($(this).scrollTop() === ($(this).prop('scrollHeight') - $(this).outerHeight())){
+                                if ($(this).find('.ui-scroll-loadable')) {
+                                    $('.ui-scroll-loadable').each(function() {
+                                        Ux.loadScroll($(this));
+                                    });
+                                }
+                            }
+                            return false;
+                        });
+                        
                         // Flag body
                         $('body').data('UxListened', true);
                     }
                     
                 },
                 
+                /**
+                 * @todo virer ca 
+                 */
                 registerListeners: function() {
                     
                     // Equalize dom node childrens height
@@ -783,17 +813,7 @@
                         });
                      });
                     
-                    // load on scroll
-                    $('.ui-loadscroll').scroll(function(){
-                        if ($(this).scrollTop() === ($(this).prop('scrollHeight') - $(this).outerHeight())){
-                            if ($(this).find('.ui-scroll-loadable')) {
-                                $('.ui-scroll-loadable').each(function() {
-                                    Ux.loadScroll($(this));
-                                });
-                            }
-                        }
-                        return false;
-                    });
+
                 },
                 
                 /**
