@@ -368,16 +368,18 @@
                     }
                     
                     // Serialiser le formulaire, ses attributs data et les contenteditable qu'il contient
-                    var aFormInputs = $formTarget.serializeArray();
                     oParams = $.extend($formTarget.data(), obj.data());
+                    oParams.parameters = $formTarget.serializeJSON();
                     if($(sFormSelector+' div[contenteditable=true]').size() != 0) {
                         $(sFormSelector+' .ui-editor').each(function() {
-                            aFormInputs.push({'name' : $(this).attr('data-name'), 'value' : $(this).parent().find('div[contenteditable=true]:first').html()});
+                            sInputName = $(this).data('name');
+                            // @todo c'est crade risque de bug
+                            sInputValue = $(this).parent().find('div[contenteditable=true]:first').html();
+                            // @todo trouver la bonne syntaxe pour pousser dans l'objet JSON
+                            oParams.parameters.sInputName = sInputValue;
                         });
                     }    
- 
-                    oParams.parameters = JSON.stringify(aFormInputs);
-
+                    
                     $.ajax({
                         type: 'POST',
                         url: $formTarget.attr('action'),
@@ -386,6 +388,7 @@
                         beforeSend : function(preload) {
                             // Mettre en cache et vider l'objet qui contiendra la reponse
                             $domTarget.data('initialContent', $domTarget.html());
+                            $domTarget.empty();
                         },
                         success: function(rep){
                             if (!obj.hasClass('sendNotificationOnCallback')) {
