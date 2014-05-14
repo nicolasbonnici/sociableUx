@@ -27,18 +27,21 @@
                             }
                         };
 
-                        addEvent(document.getElementById('open-left'), 'click', function(){
-                            snapper.open('left');
-                        });
+                        document.getElementById('open-left').addEventListener('click', function(){
 
+                            if( snapper.state().state=="left" ){
+                                snapper.close();
+                            } else {
+                                snapper.open('left');
+                            }
+
+                        });
+                        
                         document.getElementById('ux-global-search-input').addEventListener('focus', function(){
                             snapper.open('left');
                             snapper.expand('left');
                         });
                         
-                        document.getElementById('ux-global-search-input').addEventListener('blur', function(){
-                            snapper.close('left');
-                        });
                     }
                         
                 },
@@ -242,7 +245,6 @@
 
                     var sSelector = '#'+$obj.attr('id');                            
                     var iOffSet = $(sSelector).data('ioffset', $(sSelector + ' .ui-item').length);
-                    console.log($(sSelector + ' .ui-item').length);
                     var aData = $(sSelector).data();
                     $.ajax({
                         type: 'POST',
@@ -674,8 +676,16 @@
                         
                         // Envoyer des formulaires en asynchrone
                         $('body').on('click', '.ui-sendform', function() {      
-                            Ux.sendForm($(this));       
-                        });        
+                            Ux.sendForm($(this));
+                        });
+                        // Prevent default for all forms linked to .ui-sendform button to asynch submit them
+                        $('.ui-sendform').each(function() {
+                            var $btn = $(this);
+                            $($(this).data('form')).on('submit', function() {
+                                $btn.trigger('click');
+                                return false;
+                            });
+                        });
                         
                         // Envoyer des formulaires en asynchrone
                         $('.ui-reload').on('click', function() {    
@@ -773,13 +783,6 @@
                         // Give focus to a selector
                         $('body').on('click', '.ui-focus', function() {
                            $($(this).data('focus-selector')).focus(); 
-                        });
-                        
-                        
-                        // Asynch forms
-                        $('body').on('submit', '.asynchSendOnSubmit', function () {
-                            console.log('la');
-                            return false; 
                         });
                         
                         // load on scroll
