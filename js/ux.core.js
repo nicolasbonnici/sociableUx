@@ -111,6 +111,7 @@
                  * @todo test $.fn.summernote first
                  */ 
                 initEditors: function() {
+                    
                     if ($('.ui-editor').size() > 0) {
                         $('.ui-editor').summernote({
                             height: 350,
@@ -372,13 +373,12 @@
                     // Serialiser le formulaire, ses attributs data et les contenteditable qu'il contient
                     oParams = $.extend($formTarget.data(), obj.data());
                     oParams.parameters = $formTarget.serializeJSON();
+                    console.log(oParams.parameters);
                     if($(sFormSelector+' div[contenteditable=true]').size() != 0) {
                         $(sFormSelector+' .ui-editor').each(function() {
                             sInputName = $(this).data('name');
-                            // @todo c'est crade risque de bug
                             sInputValue = $(this).parent().find('div[contenteditable=true]:first').html();
-                            // @todo trouver la bonne syntaxe pour pousser dans l'objet JSON
-                            oParams.parameters.sInputName = sInputValue;
+                            oParams.parameters[sInputName] = sInputValue;
                         });
                     }    
                     
