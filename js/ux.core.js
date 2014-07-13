@@ -322,7 +322,7 @@
                         $obj.data('initialContent', $obj.html());
                     },
                     success : function(rep) {
-                        if (rep.status === 1) { // @see if XHR_STATUS_OK
+                        if (rep.status === 200) { // @see if XHR_STATUS_OK
                             $obj.append(rep.content);
                             $('#activityDebug').append(rep.debug); // @todo
                                                                     // selecteur
@@ -456,7 +456,6 @@
                 // contenteditable qu'il contient
                 oParams = $.extend($formTarget.data(), obj.data());
                 oParams.parameters = $formTarget.serializeJSON();
-                console.log(oParams.parameters);
                 if ($(sFormSelector + ' div[contenteditable=true]').size() != 0) {
                     $(sFormSelector + ' .ui-editor').each(
                             function() {
@@ -661,7 +660,7 @@
                                 'glyphicon glyphicon-info-sign');
                     },
                     success : function(rep) {
-                        if (rep.status === 1) { // @see if XHR_STATUS_OK
+                        if (rep.status === 200) { // @see if XHR_STATUS_OK
                             $(sSelector).append(rep.content);
                             $('#activityDebug').append(rep.debug); // @todo
                                                                     // selecteur
@@ -1228,7 +1227,6 @@
             }
         };
 
-        //~ // Permettre le chainage par jQuery
         return Ux;
     };
 })(jQuery);
