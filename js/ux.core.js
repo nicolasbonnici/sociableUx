@@ -17,7 +17,7 @@
                     var snapper = new Snap({
                         element : document.getElementById('ux-content'),
                         maxPosition : 400,
-                        minPosition : -180
+                        minPosition : -400
                     });
 
                     var addEvent = function addEvent(element, eventName, func) {
@@ -43,7 +43,6 @@
                     document.getElementById('ux-global-search-input')
                             .addEventListener('focus', function() {
                                 snapper.open('left');
-                                snapper.expand('left');
                             });
 
                 }
@@ -325,16 +324,16 @@
                         if (rep.status === 200) { // @see if XHR_STATUS_OK
                             $obj.append(rep.content);
                             $('#activityDebug').append(rep.debug); // @todo
-                                                                    // selecteur
-                                                                    // en config
+                            // selecteur
+                            // en config
                         }
                     },
                     error : function(rep) {
                         // Restore cached content
                         $obj.append($(sSelector).data('initialContent'));
                         $('#activityDebug').append(rep.debug); // @todo
-                                                                // selecteur en
-                                                                // config
+                        // selecteur en
+                        // config
                     },
                     complete : function() {
                         $.pnotify_remove_all();
@@ -410,15 +409,15 @@
                             }
                         }
                         $('#activityDebug').append(rep.debug); // @todo
-                                                                // selecteur en
-                                                                // config
+                        // selecteur en
+                        // config
                     },
                     error : function(err) {
                         // Restore cached content
                         $domTarget.append($domTarget.data('initialContent'));
                         $('#activityDebug').append(rep.debug); // @todo
-                                                                // selecteur en
-                                                                // config
+                        // selecteur en
+                        // config
 
                     },
                     complete : function() {
@@ -503,8 +502,8 @@
                             }
                         }
                         $('#activityDebug').append(rep.debug); // @todo
-                                                                // selecteur en
-                                                                // config
+                        // selecteur en
+                        // config
                     },
                     error : function(err) {
                         // Restore cached content
@@ -592,9 +591,9 @@
                                                         $('#activityDebug')
                                                                 .append(
                                                                         rep.debug); // @todo
-                                                                                    // selecteur
-                                                                                    // en
-                                                                                    // config
+                                                        // selecteur
+                                                        // en
+                                                        // config
                                                     },
                                                     error : function(err) {
                                                         // Restore cached
@@ -660,11 +659,11 @@
                                 'glyphicon glyphicon-info-sign');
                     },
                     success : function(rep) {
-                        if (rep.status === 200) { // @see if XHR_STATUS_OK
+                        if (rep.status === 200) { // if XHR_STATUS_OK
                             $(sSelector).append(rep.content);
                             $('#activityDebug').append(rep.debug); // @todo
-                                                                    // selecteur
-                                                                    // en config
+                            // selecteur
+                            // en config
                         }
                     },
                     error : function(err) {
