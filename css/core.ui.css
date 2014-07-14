@@ -82,6 +82,11 @@ nav.navbar-default{
     padding: 75px 0 0 0;
 }
 
+/* Layout */
+#app-stack-left {
+    width: 400px;
+}
+
 /* Show the red "No Drag" box in the demo */
 #no-drag,
 #do-drag {
