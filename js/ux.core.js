@@ -39,6 +39,17 @@
                                 }
 
                             });
+                    
+                    document.getElementById('open-right').addEventListener(
+                            'click', function() {
+                                
+                                if (snapper.state().state == "right") {
+                                    snapper.close();
+                                } else {
+                                    snapper.open('right');
+                                }
+                                
+                            });
 
                     document.getElementById('ux-global-search-input')
                             .addEventListener('focus', function() {
@@ -851,6 +862,25 @@
                         });
                     });
 
+                    // CSS background
+                    $('.ui-background').each(function() {
+                       if (! $(this).data('ui-background-fired') && typeof($(this).data('background') !== 'undefined')) {
+                           
+                           $(this).css('background-image', 'url(' + $(this).data('background') + ')');
+                           
+                           if (typeof($(this).data('background-position') !== 'undefined')) {
+                               $(this).css('background-position', $(this).data('background-position'));
+                           }
+                           
+                           if (typeof($(this).data('background-repeat') !== 'undefined')) {
+                               $(this).css('background-repeat', $(this).data('background-repeat'));
+                           }
+                           
+                           $(this).data('ui-background-fired', true);
+                           
+                       } 
+                    });
+                    
                     // Envoyer des formulaires en asynchrone
                     $('.ui-reload')
                             .on(
