@@ -6,7 +6,7 @@
 
 (function($) {
     $.fn.userExperience = function(params) {
-        return {
+        var Ux = {
             /**
              * Init global app layout
              */
@@ -543,86 +543,82 @@
             loadView : function() {
                 if ($('.ui-loadable').size() > 0) {
 
-                    $('.ui-loadable')
-                            .each(
-                                    function() {
+                    $('.ui-loadable').each(function() {
 
-                                        var sUrlTarget = '';
-                                        if (typeof ($(this).data('bundle')) !== 'undefined'
-                                                && typeof ($(this)
-                                                        .data('controller')) !== 'undefined'
-                                                && typeof ($(this)
-                                                        .data('action')) !== 'undefined') {
-                                            sUrlTarget = '/'
-                                                    + $(this).data('bundle')
-                                                    + '/'
-                                                    + $(this)
-                                                            .data('controller')
-                                                    + '/'
-                                                    + $(this).data('action');
-                                        } else if (typeof ($(this).data('url')) !== 'undefined') {
-                                            sUrlTarget = $(this).data('url');
-                                        } else {
-                                            Ux
-                                                    .sendNotification(
-                                                            'No url specified to load ui-loadable div #'
-                                                                    + $(this)
-                                                                            .attr(
-                                                                                    'id'),
-                                                            'error',
-                                                            'glyphicon glyphicon-warning',
-                                                            false);
-                                            return false;
-                                        }
+                        var sUrlTarget = '';
+                        if (
+                            typeof ($(this).data('bundle')) !== 'undefined' && 
+                            typeof ($(this).data('controller')) !== 'undefined'&& 
+                            typeof ($(this).data('action')) !== 'undefined'
+                        ) {
+                            sUrlTarget = '/'
+                                    + $(this).data('bundle')
+                                    + '/'
+                                    + $(this)
+                                            .data('controller')
+                                    + '/'
+                                    + $(this).data('action');
+                        } else if (typeof ($(this).data('url')) !== 'undefined') {
+                            sUrlTarget = $(this).data('url');
+                        } else {
+                            Ux.sendNotification(
+                                'No url specified to load ui-loadable div #'
+                                        + $(this)
+                                                .attr(
+                                                        'id'),
+                                'error',
+                                'glyphicon glyphicon-warning',
+                                false
+                            );
+                            return false;
+                        }
 
-                                        var sSelector = '#'
-                                                + $(this).attr('id');
+                        var sSelector = '#' + $(this).attr('id');
 
-                                        var aData = $(sSelector).data();
-                                        $
-                                                .ajax({
-                                                    type : 'POST',
-                                                    url : sUrlTarget,
-                                                    data : aData,
-                                                    beforeSend : function(
-                                                            preload) {
-                                                        // Mettre en cache et
-                                                        // vider l'objet qui
-                                                        // contiendra la reponse
-                                                        $(this)
-                                                                .data(
-                                                                        'initialContent',
-                                                                        $(this)
-                                                                                .html());
-                                                        $(sSelector).empty();
-                                                    },
-                                                    success : function(rep) {
-                                                        $(sSelector).append(
-                                                                rep.content);
-                                                        $('#activityDebug')
-                                                                .append(
-                                                                        rep.debug); // @todo
-                                                        // selecteur
-                                                        // en
-                                                        // config
-                                                    },
-                                                    error : function(err) {
-                                                        // Restore cached
-                                                        // content
-                                                        $(sSelector)
-                                                                .append(
-                                                                        $(
-                                                                                sSelector)
-                                                                                .data(
-                                                                                        'initialContent'));
-                                                    },
-                                                    complete : function() {
-                                                        $(sSelector)
-                                                                .removeData(
-                                                                        'initialContent');
-                                                    }
-                                                });
-                                    });
+                        var aData = $(sSelector).data();
+                        $.ajax({
+                            type : 'POST',
+                            url : sUrlTarget,
+                            data : aData,
+                            beforeSend : function(
+                                    preload) {
+                                // Mettre en cache et
+                                // vider l'objet qui
+                                // contiendra la reponse
+                                $(this)
+                                        .data(
+                                                'initialContent',
+                                                $(this)
+                                                        .html());
+                                $(sSelector).empty();
+                            },
+                            success : function(rep) {
+                                $(sSelector).append(
+                                        rep.content);
+                                $('#activityDebug')
+                                        .append(
+                                                rep.debug); // @todo
+                                // selecteur
+                                // en
+                                // config
+                            },
+                            error : function(err) {
+                                // Restore cached
+                                // content
+                                $(sSelector)
+                                        .append(
+                                                $(
+                                                        sSelector)
+                                                        .data(
+                                                                'initialContent'));
+                            },
+                            complete : function() {
+                                $(sSelector)
+                                        .removeData(
+                                                'initialContent');
+                            }
+                        });
+                    });
 
                 } else {
                     // Fire all Ux components
@@ -795,25 +791,6 @@
                         $(this).data('uiDateTimePickerFired', true);
                     }
                 });
-            },
-
-            /**
-             * Init carousel component
-             */
-            initCarousels : function() {
-                // init carousel
-                $('.ui-carousel').each(
-                        function() {
-                            if (!$(this).data('carouselFired')) {
-                                var iAutoplay = (($(this)
-                                        .hasClass('noAutoplay')) ? 0 : 5000);
-                                $(this).carousel({
-                                    interval : iAutoplay,
-                                    duration : 500
-                                });
-                                $(this).data('carouselFired', true);
-                            }
-                        });
             },
 
             /**
@@ -1033,25 +1010,16 @@
                     });
 
                     // load on scroll
-                    $('.ui-loadscroll')
-                            .bind(
-                                    'scroll',
-                                    function() {
-                                        if ($(this).scrollTop() === ($(this)
-                                                .prop('scrollHeight') - $(this)
-                                                .outerHeight())) {
-                                            if ($(this).find(
-                                                    '.ui-scroll-loadable')) {
-                                                $('.ui-scroll-loadable')
-                                                        .each(
-                                                                function() {
-                                                                    Ux
-                                                                            .loadScroll($(this));
-                                                                });
-                                            }
-                                        }
-                                        return false;
-                                    });
+                    $('.ui-loadscroll').bind('scroll', function() {
+                        if ($(this).scrollTop() === ($(this).prop('scrollHeight') - $(this).outerHeight())) {
+                            if ($(this).find('.ui-scroll-loadable')) {
+                                $('.ui-scroll-loadable').each(function() {
+                                    Ux.loadScroll($(this));
+                                });
+                            }
+                        }
+                        return false;
+                    });
 
                     // select2 elements
                     $('.ui-autocomplete').each(function() {
@@ -1100,54 +1068,12 @@
             },
 
             /**
-             * @todo virer ca 
-             */
-            registerListeners : function() {
-
-                // Equalize dom node childrens height
-                $('.ui-equalize-height')
-                        .each(
-                                function() {
-                                    $(this)
-                                            .data(
-                                                    'equalized-height',
-                                                    $(this)
-                                                            .parent(
-                                                                    '.ui-equalize-height .ui-equalize:first')
-                                                            .height());
-                                    $('.ui-equalize')
-                                            .each(
-                                                    function() {
-                                                        if ($(this).height() > maxHeight) {
-                                                            $(this)
-                                                                    .parent(
-                                                                            '.ui-equalize-height')
-                                                                    .data(
-                                                                            'equalizd-height',
-                                                                            $(
-                                                                                    this)
-                                                                                    .height());
-                                                        }
-                                                        $(this)
-                                                                .height(
-                                                                        $(this)
-                                                                                .parent(
-                                                                                        '.ui-equalize-height')
-                                                                                .data(
-                                                                                        'equalizd-height'));
-                                                    });
-                                });
-
-            },
-
-            /**
              * App load hook
              * Call when app is fully loaded
              */
             onLoad : function() {
                 // Init events bindings
                 this.registerBodyListeners();
-                this.registerListeners();
 
                 // Lauch all asynch calls
                 this.loadView();
@@ -1187,10 +1113,9 @@
                 // format timestamps to date
                 this.formatTimestamps();
 
-                // Init carroussel
-                this.initCarousels();
-
             }
         };
+        
+        return Ux;
     };
 })(jQuery);

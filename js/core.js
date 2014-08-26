@@ -1,13 +1,12 @@
 $(document).ready(function() {
     // Load Ux component plugin
-    var Ux = $.fn.userExperience();
-    Ux.onLoad();
+    $.fn.userExperience().onLoad();
     
     $(document).ajaxStop(function() {
-        Ux.onAjaxStop();
+        $.fn.userExperience().onAjaxStop();
     });
     
     $(window).unload(function() { 
-        Ux.onUnload();
+        $.fn.userExperience().onUnload();
     }); 
 });
