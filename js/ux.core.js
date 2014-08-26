@@ -6,7 +6,7 @@
 
 (function($) {
     $.fn.userExperience = function(params) {
-        var Ux = {
+        return {
             /**
              * Init global app layout
              */
@@ -1053,6 +1053,46 @@
                                         return false;
                                     });
 
+                    // select2 elements
+                    $('.ui-autocomplete').each(function() {
+                        if (! $(this).data('ui-autocomplete-fired')) {
+                           $(this).select2({
+                               placeholder: $(this).attr('placeholder'), 
+                               minimumInputLength: 1,
+                               ajax: {
+                                   type: 'post',
+                                   url: "/search/home/process/search/" + $(this).val(),
+                                   data: function (term, page) {
+                                       return {
+                                           parameters: {
+                                               search: $(this).val(),
+                                               entities: ''
+                                           },
+                                           apikey: "ju6z9mjyajq2djue3gbvv26t" // @todo :) !!
+                                       };
+                                   },
+                                   results: function (data, page) { 
+                                       return {results: data};
+                                   }
+                               }
+//                               initSelection: function(element, callback) {
+//                                   var id=$(element).val();
+//                                   if (id!=="") {
+//                                       $.ajax("http://api.rottentomatoes.com/api/public/v1.0/movies/"+id+".json", {
+//                                           data: {
+//                                               apikey: "ju6z9mjyajq2djue3gbvv26t"
+//                                           },
+//                                           dataType: "jsonp"
+//                                       }).done(function(data) { callback(data); });
+//                                   }
+//                               }
+                            });
+                         
+                           $(this).data('ui-autocomplete-fired', true);
+                           
+                        }
+                    });
+                    
                     // Flag body
                     $('body').data('UxListened', true);
                 }
@@ -1098,106 +1138,6 @@
                                                     });
                                 });
 
-            },
-
-            /**
-             * Afficher des elements en mode contentFlow
-             * @todo 3d-transform sur les items
-             */
-            initContentFlow : function() {
-                $('.ui-contentflow')
-                        .each(
-                                function() {
-                                    if ($(this).attr('id') === 'undefined') {
-                                        Ux
-                                                .sendNotification(
-                                                        'No id attribute on a ui-contentflow widget!',
-                                                        'error',
-                                                        'glyphicon glyphicon-error-sign',
-                                                        false);
-                                    } else {
-                                        var sNodeId = $(this).attr('id');
-
-                                        var sConnectedCarousel = null;
-                                        if (typeof $(this).data(
-                                                'connected-carousel') !== 'undefined') {
-                                            sConnectedCarousel = $(this).data(
-                                                    'connected-carousel');
-                                        }
-
-                                        var oContentFlow = new ContentFlow(
-                                                sNodeId,
-                                                {
-                                                    visibleItems : 10,
-                                                    endOpacity : 0.6,
-                                                    startItem : $(
-                                                            '#'
-                                                                    + sNodeId
-                                                                    + ' div[data-carousel=2]')
-                                                            .index(),
-                                                    maxItemHeight : 240,
-                                                    scaleFactorLandscape : 1,
-                                                    onReachTarget : function(
-                                                            item) {
-                                                        // Show details
-                                                        $('.details').addClass(
-                                                                'hide');
-                                                        $(
-                                                                $(
-                                                                        '#'
-                                                                                + sNodeId
-                                                                                + ' div.item')
-                                                                        .eq(
-                                                                                item.index)
-                                                                        .data(
-                                                                                'toggle-selector'))
-                                                                .toggleClass(
-                                                                        'hide');
-                                                    },
-                                                    onclickActiveItem : function(
-                                                            item) {
-                                                        if (sConnectedCarousel !== null) {
-                                                            $(
-                                                                    sConnectedCarousel)
-                                                                    .carousel(
-                                                                            $(
-                                                                                    '#'
-                                                                                            + sNodeId
-                                                                                            + ' div.item')
-                                                                                    .eq(
-                                                                                            item.index)
-                                                                                    .data(
-                                                                                            'carousel'));
-                                                        }
-                                                    },
-                                                    onclickInactiveItem : function(
-                                                            item) {
-                                                        if (sConnectedCarousel !== null) {
-                                                            $(
-                                                                    sConnectedCarousel)
-                                                                    .carousel(
-                                                                            $(
-                                                                                    '#'
-                                                                                            + sNodeId
-                                                                                            + ' div.item')
-                                                                                    .eq(
-                                                                                            item.index)
-                                                                                    .data(
-                                                                                            'carousel'));
-                                                        }
-
-                                                    }
-                                                });
-
-                                        if (typeof $(this).data(
-                                                'connected-carousel') !== 'undefined') {
-                                            $(sConnectedCarousel)
-                                                    .data('contentflow',
-                                                            oContentFlow);
-                                        }
-
-                                    }
-                                });
             },
 
             /**
@@ -1250,12 +1190,7 @@
                 // Init carroussel
                 this.initCarousels();
 
-                // contentflow widgets
-                this.initContentFlow();
-
             }
         };
-
-        return Ux;
     };
 })(jQuery);

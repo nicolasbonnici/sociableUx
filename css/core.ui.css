@@ -108,9 +108,13 @@ nav.navbar-default{
 
 /* Styles for expanding "Search" input in the "Expanding" demo */
 #ux-global-search-input {
+    width: 360px;
     height: 35px;
     padding: 5px 15px 5px 5px;
     border: 1px solid #5bc0de;
+    color: #404040;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 #ux-global-search-input:focus {
