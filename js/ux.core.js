@@ -799,6 +799,21 @@
             registerBodyListeners : function() {
                 if (!$('body').data('UxListened')) {
 
+//                    // Backgound slideshow @todo plugin
+//                      var i = 0;
+//                      var aBgs = ['/lib/img/bg1.jpg','/lib/img/bg2.jpg','/lib/img/bg3.jpg'];
+//                      var $uxWrap = $('#ux-content');
+//                      $uxWrap.css('background-image', 'url("lib/img/bg1.jpg")');
+//                      setInterval(function(){  
+//                          $uxWrap.fadeOut(1000, function () {
+//                              $uxWrap.css('background-image', 'url(' + aBgs[i++] +')');
+//                           });
+//                           if(i == aBgs.length) {
+//                               i = 0;
+//                           }
+//
+//                      }, 5000);
+
                     // Ux form helpers
                     $('body').on(
                             'focus',

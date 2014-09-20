@@ -1,5 +1,5 @@
 /**
- * Geolocation tool client component jQuery plugin
+ * Geolocation client component
  * 
  * @author Nico <nicolasbonnici@gmail.com>
  */
@@ -24,8 +24,13 @@
              * Instance constructor
              */
             construct: function() {
-                $('ux-content').append('<div id="' + this.sGeoMapId + '"></div>');
-                $('ux-content').append('<div id="' + this.geolocation_log + '" class="hidden"></div>');
+                $('ux-content').append('<div class="container-fluid">' +
+                                            '<div class="row">' +
+                                                '<div id="' + this.sGeoMapId + '" class="col-md-12"></div>' +
+                                            '</div' +
+                                            '<div id="' + this.geolocation_log + '" class="col-md-12 hidden"></div>'
+                                       '</div>');
+                $('ux-content').append();
                 
                 this.getLocation();
             },
